@@ -15,7 +15,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const handleThemeChange = () => {
     const nextTheme = mode === "dark" ? "light" : "dark";
 
-    setMode(nextTheme);
+    // setMode(nextTheme);
     document.documentElement.classList.add(nextTheme);
   };
 
