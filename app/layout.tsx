@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: "Devflow",
   description: "A modern clone of StackOverflow",
   icons: {
-    icon: "/assets/images/site-logo.svg",
+    icon: "/assets/icons/site-logo.svg",
   },
 };
 
