@@ -18,14 +18,15 @@ const LeftSidebar = () => {
 
   return (
     <section className="custom-scrollbar background-light900_dark200 light-border sticky left-0 top-0 flex h-screen w-fit flex-col justify-between  overflow-y-auto border-r p-6 pt-36 shadow-light-300 max-sm:hidden lg:w-[266px] dark:shadow-none ">
-      {sidebarLinks.map((item) => {
-        const isActive =
-          (pathName.includes(item.route) && item.route.length > 1) ||
-          pathName === item.route;
+      <div className="flex flex-1 flex-col gap-1">
+        {sidebarLinks.map((item) => {
+          const isActive =
+            (pathName.includes(item.route) && item.route.length > 1) ||
+            pathName === item.route;
 
-        return (
-          <div key={item.route}>
+          return (
             <Link
+              key={item.route}
               href={item.route}
               className={`${
                 isActive
@@ -48,9 +49,9 @@ const LeftSidebar = () => {
                 {item.label}
               </p>
             </Link>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
 
       <SignedOut>
         <div className="flex flex-col gap-3">
@@ -82,6 +83,7 @@ const LeftSidebar = () => {
           </Link>
         </div>
       </SignedOut>
+
       <SignedIn>
         <div className="flex flex-col gap-4 justify-self-end ">
           <Link
@@ -90,10 +92,11 @@ const LeftSidebar = () => {
             onClick={handleSignOut}
           >
             <Image
-              src="/assets/icons/close.svg"
+              src="/assets/icons/account.svg"
               alt="Log out"
               width={20}
               height={20}
+              className="invert-colors"
             />
             <p className="base-medium max-lg:hidden">Log out</p>
           </Link>
