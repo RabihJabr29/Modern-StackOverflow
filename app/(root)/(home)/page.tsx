@@ -1,8 +1,39 @@
+import HomeFilters from "@/components/home/HomeFilters";
+import NoResults from "@/components/shared/NoResults";
 import Filter from "@/components/shared/filters/Filter";
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
 import Link from "next/link";
+
+const questios = [
+  {
+    _id: 1,
+    title: "What reporting tool can be used with Next JS?",
+    tags: [
+      { _id: 1, name: "Next.jsx" },
+      { _id: 2, name: "SQL" },
+    ],
+    author: "Rabih Jabr",
+    upVotes: 10,
+    views: 56,
+    answers: 2,
+    createdAt: "asked 11 days ago",
+  },
+  {
+    _id: 2,
+    title: "What reporting tool can be used with Next JS?",
+    tags: [
+      { _id: 1, name: "CSS" },
+      { _id: 2, name: "SQL" },
+    ],
+    author: "John Doe",
+    upVotes: 11,
+    views: 32,
+    answers: 1,
+    createdAt: "asked 3 days ago",
+  },
+];
 
 export default function Home() {
   return (
@@ -31,6 +62,23 @@ export default function Home() {
           otherClasses="flex min-h-[56px] sm:min-width-[170px]"
           containerClasses="hidden max-md:flex"
         />
+      </div>
+
+      <HomeFilters />
+
+      <div className="mt-10 flex w-full flex-col gap-6">
+        {questios.length < 0 ? (
+          questios.map((question) => "QuestionCard")
+        ) : (
+          <NoResults
+            title="questions"
+            description=" Be the first to break the silence! 🚀 Ask a Question and kickstart the
+          discussion. our query could be the next big thing others learn from. Get
+          involved! 💡"
+            link="/ask-question"
+            linkTitle="Ask a Question"
+          />
+        )}
       </div>
     </>
   );

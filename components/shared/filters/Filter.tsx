@@ -1,6 +1,5 @@
 "use client";
 
-import HomeFilters from "@/components/home/HomeFilters";
 import {
   Select,
   SelectContent,
@@ -47,8 +46,6 @@ const Filter = ({
           </SelectContent>
         </Select>
       </div>
-
-      <HomeFilters />
     </>
   );
 };
