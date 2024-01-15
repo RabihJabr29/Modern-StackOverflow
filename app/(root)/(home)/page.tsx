@@ -1,3 +1,4 @@
+import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilters from "@/components/home/HomeFilters";
 import NoResults from "@/components/shared/NoResults";
 import Filter from "@/components/shared/filters/Filter";
@@ -6,32 +7,37 @@ import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
 import Link from "next/link";
 
-const questios = [
+const questions = [
   {
     _id: 1,
     title: "What reporting tool can be used with Next JS?",
     tags: [
-      { _id: 1, name: "Next.jsx" },
-      { _id: 2, name: "SQL" },
+      { _id: "1", name: "Next.jsx" },
+      { _id: "2", name: "SQL" },
     ],
-    author: "Rabih Jabr",
+    author: { _id: 101, name: "Rabih Jabr", picture: "rabih.jpg" },
     upVotes: 10,
     views: 56,
-    answers: 2,
-    createdAt: "asked 11 days ago",
+    answers: [
+      { answerId: 1, text: "You can use XYZ tool with Next JS." },
+      { answerId: 2, text: "Another option is ABC reporting tool." },
+    ],
+    createdAt: new Date(Date.now() - 11 * 24 * 60 * 60 * 1000), // 11 days ago
   },
   {
     _id: 2,
-    title: "What reporting tool can be used with Next JS?",
+    title: "How to style components in Next JS?",
     tags: [
-      { _id: 1, name: "CSS" },
-      { _id: 2, name: "SQL" },
+      { _id: "3", name: "CSS" },
+      { _id: "4", name: "React" },
     ],
-    author: "John Doe",
-    upVotes: 11,
-    views: 32,
-    answers: 1,
-    createdAt: "asked 3 days ago",
+    author: { _id: 102, name: "John Doe", picture: "john.jpg" },
+    upVotes: 1200,
+    views: 23901399,
+    answers: [
+      { answerId: 1, text: "You can use styled-components for styling." },
+    ],
+    createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
   },
 ];
 
@@ -67,8 +73,20 @@ export default function Home() {
       <HomeFilters />
 
       <div className="mt-10 flex w-full flex-col gap-6">
-        {questios.length < 0 ? (
-          questios.map((question) => "QuestionCard")
+        {questions.length > 0 ? (
+          questions.map((question) => (
+            <QuestionCard
+              key={question._id}
+              _id={question._id}
+              title={question.title}
+              tags={question.tags}
+              author={question.author}
+              upVotes={question.upVotes}
+              views={question.views}
+              answers={question.answers}
+              createdAt={question.createdAt}
+            />
+          ))
         ) : (
           <NoResults
             title="questions"
