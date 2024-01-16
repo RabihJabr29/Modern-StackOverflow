@@ -19,6 +19,7 @@ import { Input } from "../ui/input";
 import { QuestionsSchema } from "@/lib/validations";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
+import { createQuestion } from "@/lib/actions/Question.action";
 
 const type: string = "create";
 
@@ -36,13 +37,13 @@ const Question = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof QuestionsSchema>) {
+  async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
     setisSubmitting(true);
-    console.log(values);
-
     try {
       // make an async call to our api, to create a question
       // it should contain all form data.
+      await createQuestion({ values });
+
       // navigate to home
     } catch (error) {
     } finally {
@@ -169,6 +170,8 @@ const Question = () => {
                         content_style:
                           "body { font-family:Inter; font-size:16px }",
                       }}
+                      onBlur={field.onBlur}
+                      onEditorChange={(content) => field.onChange(content)}
                     />
                   </FormControl>
                   <FormDescription className="body-regular mt-2.5 text-light-500">
