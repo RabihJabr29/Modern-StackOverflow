@@ -5,43 +5,14 @@ import Filter from "@/components/shared/filters/Filter";
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
+import { getQuestions } from "@/lib/actions/question.action";
 import Link from "next/link";
 
-const questions = [
-  {
-    _id: 1,
-    title: "What reporting tool can be used with Next JS?",
-    tags: [
-      { _id: "1", name: "Next.jsx" },
-      { _id: "2", name: "SQL" },
-    ],
-    author: { _id: 101, name: "Rabih Jabr", picture: "rabih.jpg" },
-    upVotes: 10,
-    views: 56,
-    answers: [
-      { answerId: 1, text: "You can use XYZ tool with Next JS." },
-      { answerId: 2, text: "Another option is ABC reporting tool." },
-    ],
-    createdAt: new Date(Date.now() - 11 * 24 * 60 * 60 * 1000), // 11 days ago
-  },
-  {
-    _id: 2,
-    title: "How to style components in Next JS?",
-    tags: [
-      { _id: "3", name: "CSS" },
-      { _id: "4", name: "React" },
-    ],
-    author: { _id: 102, name: "John Doe", picture: "john.jpg" },
-    upVotes: 1200,
-    views: 23901399,
-    answers: [
-      { answerId: 1, text: "You can use styled-components for styling." },
-    ],
-    createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
-  },
-];
+export default async function Home() {
+  const result = await getQuestions({});
 
-export default function Home() {
+  const { questions } = result;
+
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">

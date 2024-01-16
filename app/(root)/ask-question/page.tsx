@@ -15,8 +15,6 @@ const page = async () => {
 
   const mongoUser = await getUserById({ userId });
 
-  console.log(mongoUser);
-
   return (
     <div>
       <Question mongoUserId={JSON.stringify(mongoUser._id)} />
