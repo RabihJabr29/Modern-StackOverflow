@@ -32,7 +32,13 @@ Follow these steps to get the Devflow App up and running on your local machine:
 
 ## Installation
 
-First, run the development server:
+First, clone this repo locally.
+Then, install dependencies using:
+```bash
+npm install
+```
+
+Finally, run the development server:
 
 ```bash
 npm run dev
