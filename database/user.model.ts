@@ -27,7 +27,7 @@ const UserSchema = new Schema({
   portfolioWebsite: { type: String },
   reputation: { type: Number, default: 0 },
   saved: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
-  joinedAt: { type: Date, required: true },
+  joinedAt: { type: Date, default: Date.now },
 });
 
 const User = models.User || model("User", UserSchema);
