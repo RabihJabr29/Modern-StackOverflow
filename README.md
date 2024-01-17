@@ -1,6 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Devflow Clone
+
+Welcome to the StackOverflow Clone, a modern Q&A platform built using Next.js, React.js, MongoDB, and Clerk for authentication. This application is designed to replicate the functionality of StackOverflow while incorporating some unique features.
+
+## Features (Work in progress) :D
+
+### 1. Voting System
+
+Users can upvote and downvote questions and answers, allowing the community to highlight the most helpful and relevant content.
+
+### 2. Reputation System
+
+Earn reputation points based on your contributions. The more valuable your questions and answers, the higher your reputation will be. Gain privileges as you climb the reputation ladder.
+
+### 3. Authentication with Clerk
+
+Secure authentication is provided by Clerk, ensuring a seamless and safe user experience. Easily sign in, manage your profile, and participate in the community.
+
+### 4. ChatGPT Auto-generated Answers
+
+Experience the power of ChatGPT, which provides auto-generated answers for new posts. This feature enhances user engagement and ensures that questions receive prompt responses.
+
+## Tech Stack
+
+- **Full-Stack:** Next.js, React.js
+- **Database:** MongoDB
+- **Authentication:** Clerk
 
 ## Getting Started
+
+Follow these steps to get the Devflow App up and running on your local machine:
+
+## Installation
 
 First, run the development server:
 
@@ -28,9 +58,3 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
