@@ -21,6 +21,7 @@ import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { createQuestion } from "@/lib/actions/question.action";
 import { useRouter, usePathname } from "next/navigation";
+import { useTheme } from "@/context/ThemeProvider";
 
 const type: string = "create";
 
@@ -33,6 +34,7 @@ const Question = ({ mongoUserId }: Props) => {
   const [isSubmitting, setisSubmitting] = useState(false);
   const router = useRouter();
   const pathName = usePathname();
+  const { mode } = useTheme();
 
   const form = useForm<z.infer<typeof QuestionsSchema>>({
     resolver: zodResolver(QuestionsSchema),
@@ -183,6 +185,9 @@ const Question = ({ mongoUserId }: Props) => {
                           "bullist numlist",
                         content_style:
                           "body { font-family:Inter; font-size:16px }",
+
+                        skin: mode === "dark" ? "oxide-dark" : "oxide",
+                        content_css: mode === "dark" ? "dark" : "default",
                       }}
                       onBlur={field.onBlur}
                       onEditorChange={(content) => field.onChange(content)}
