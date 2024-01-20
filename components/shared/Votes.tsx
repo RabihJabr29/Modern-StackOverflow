@@ -1,6 +1,8 @@
 "use client";
+import { downvoteQuestion, upvoteQuestion } from "@/lib/actions/votes.action";
 import { formatBigNumber } from "@/lib/utils";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 interface VotesProps {
@@ -24,8 +26,40 @@ const Votes = ({
   userHasSaved,
 }: VotesProps) => {
   const handleSave = () => {};
+  const path = usePathname();
+  const handleVote = async (voteType: string) => {
+    if (!userId) {
+      return;
+    }
 
-  const handleVote = (type: string) => {};
+    switch (voteType) {
+      case "upvote":
+        if (type === "question") {
+          await upvoteQuestion({
+            questionId: JSON.parse(itemId),
+            userId: JSON.parse(userId),
+            hasupVoted: userHasUpVoted,
+            hasdownVoted: userHasDownVoted,
+            path,
+          });
+        }
+        break;
+
+      case "downvote":
+        if (type === "question") {
+          await downvoteQuestion({
+            questionId: JSON.parse(itemId),
+            userId: JSON.parse(userId),
+            hasupVoted: userHasUpVoted,
+            hasdownVoted: userHasDownVoted,
+            path,
+          });
+        }
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <div className="flex gap-5">

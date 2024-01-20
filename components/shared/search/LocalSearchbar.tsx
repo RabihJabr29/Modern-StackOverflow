@@ -35,7 +35,6 @@ const LocalSearchbar = ({
       <Input
         type="text"
         placeholder={placeholder}
-        value=""
         onChange={() => {}}
         className="paragraph-regular background-light800_darkgradient no-focus text-dark400_light700 border-none shadow-none outline-none"
       />

@@ -53,18 +53,10 @@ const QuestionDetailsPage = async ({
               type="question"
               itemId={JSON.stringify(question._id)}
               userId={JSON.stringify(mongoUser._id)}
-              upVotes={question.upvotes ? question.upvotes.length : 0}
-              userHasUpVoted={
-                question.upvotes
-                  ? question.upVotes.includes(mongoUser._id)
-                  : false
-              }
-              downVotes={question.downvotes ? question.downVotes.length : 0}
-              userHasDownVoted={
-                question.downvotes
-                  ? question.downVotes.includes(mongoUser._id)
-                  : false
-              }
+              upVotes={question.upVotes.length}
+              userHasUpVoted={question.upVotes.includes(mongoUser._id)}
+              downVotes={question.downVotes.length}
+              userHasDownVoted={question.downVotes.includes(mongoUser._id)}
               userHasSaved={mongoUser.saved.includes(question._id)}
             />
           </div>

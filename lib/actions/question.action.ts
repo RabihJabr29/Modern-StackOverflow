@@ -9,6 +9,7 @@ import {
 import Question from "@/database/question.model";
 import Tag from "@/database/tag.model";
 import User from "@/database/user.model";
+import console from "console";
 import { revalidatePath } from "next/cache";
 
 export async function getQuestions(params: GetQuestionsParams) {
