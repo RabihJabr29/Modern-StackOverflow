@@ -61,6 +61,15 @@ const Answer = ({ question, questionId, authorId }: AnswerProps) => {
     }
   };
 
+  const handleGenerateAIAnswer = () => {
+    if (editorRef.current) {
+      const editor = editorRef.current as any;
+      editor.setContent(
+        "Our baby AI is still learning &#129302; will be of more help soon &#128538;"
+      );
+    }
+  };
+
   return (
     <div>
       <div className="mt-6 flex flex-col justify-between gap-5 sm:flex-row sm:-items-center sm:gap-2">
@@ -70,7 +79,7 @@ const Answer = ({ question, questionId, authorId }: AnswerProps) => {
 
         <Button
           className="btn light-border-2 gap-1.5 rounded-md px-4 py-2.5 text-primary-500 shadow-none dark:text-primary-500"
-          onClick={() => {}}
+          onClick={handleGenerateAIAnswer}
         >
           <Image
             src="/assets/icons/stars.svg"
