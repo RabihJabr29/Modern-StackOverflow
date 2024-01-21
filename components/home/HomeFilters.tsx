@@ -8,7 +8,7 @@ const HomeFilters = () => {
   const active: string = "frequent";
 
   return (
-    <div className="mt-10 flex-wrap gap-3 max-sm:hidden md:flex">
+    <div className="mt-10 flex-wrap gap-5 max-sm:hidden md:flex">
       {HomePageFilters.map((filter) => {
         return (
           <Button

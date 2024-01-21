@@ -1,12 +1,13 @@
 "use server";
 
+import Question from "@/database/question.model";
 import { connectToDatabase } from "../Mongoose";
 import {
   CreateQuestionParams,
   GetQuestionByIdParams,
   GetQuestionsParams,
+  GetSavedQuestionsParams,
 } from "./shared.types";
-import Question from "@/database/question.model";
 import Tag from "@/database/tag.model";
 import User from "@/database/user.model";
 import console from "console";
@@ -47,6 +48,29 @@ export async function getQuestionById(params: GetQuestionByIdParams) {
         select: "_id clerkId name picture",
       });
     return question;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getSavedQuestions(params: GetSavedQuestionsParams) {
+  try {
+    connectToDatabase();
+    const { clerkId } = params;
+
+    const user = await User.findOne({ clerkId });
+    if (!user) {
+      throw new Error("No user found");
+    }
+
+    const savedQuestions: any[] = [];
+
+    for (const questionId of user.saved) {
+      savedQuestions.push(await getQuestionById({ questionId }));
+    }
+
+    return { savedQuestions };
   } catch (error) {
     console.log(error);
     throw error;

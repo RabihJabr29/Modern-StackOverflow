@@ -48,37 +48,40 @@ const QuestionCard = ({
       </div>
 
       <div className="flex-between mt-6 w-full flex-wrap gap-3">
-        <Metric
-          imgUrl={author.picture}
-          alt="user"
-          value={author.name}
-          title={` - asked ${getTimeStamp(createdAt)}`}
-          href={`/profile/${author._id}`}
-          isAuthor
-          textStyles="small-medium text-dark400_light700"
-        />
-
-        <Metric
-          imgUrl="/assets/icons/like.svg"
-          alt="Upvotes"
-          value={formatBigNumber(upVotes)}
-          title="Votes"
-          textStyles="small-medium text-dark400_light800"
-        />
-        <Metric
-          imgUrl="/assets/icons/message.svg"
-          alt="Message"
-          value={formatBigNumber(answers.length)}
-          title="Answers"
-          textStyles="small-medium text-dark400_light800"
-        />
-        <Metric
-          imgUrl="/assets/icons/eye.svg"
-          alt="eye"
-          value={formatBigNumber(views)}
-          title="Views"
-          textStyles="small-medium text-dark400_light800"
-        />
+        <div>
+          <Metric
+            imgUrl={author.picture}
+            alt="user"
+            value={author.name}
+            title={` - asked ${getTimeStamp(createdAt)}`}
+            href={`/profile/${author._id}`}
+            isAuthor
+            textStyles="small-medium text-dark400_light700"
+          />
+        </div>
+        <div className="flex flex-row gap-3">
+          <Metric
+            imgUrl="/assets/icons/like.svg"
+            alt="Upvotes"
+            value={formatBigNumber(upVotes)}
+            title="Votes"
+            textStyles="small-medium text-dark400_light800"
+          />
+          <Metric
+            imgUrl="/assets/icons/message.svg"
+            alt="Message"
+            value={formatBigNumber(answers.length)}
+            title="Answers"
+            textStyles="small-medium text-dark400_light800"
+          />
+          <Metric
+            imgUrl="/assets/icons/eye.svg"
+            alt="eye"
+            value={formatBigNumber(views)}
+            title="Views"
+            textStyles="small-medium text-dark400_light800"
+          />
+        </div>
       </div>
     </div>
   );
