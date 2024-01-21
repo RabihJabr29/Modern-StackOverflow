@@ -1,5 +1,10 @@
 "use client";
-import { downvoteQuestion, upvoteQuestion } from "@/lib/actions/votes.action";
+import {
+  downvoteAnswer,
+  downvoteQuestion,
+  upvoteAnswer,
+  upvoteQuestion,
+} from "@/lib/actions/votes.action";
 import { formatBigNumber } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -13,7 +18,7 @@ interface VotesProps {
   userHasUpVoted: boolean;
   downVotes: number;
   userHasDownVoted: boolean;
-  userHasSaved: boolean;
+  userHasSaved?: boolean;
 }
 const Votes = ({
   type,
@@ -42,7 +47,16 @@ const Votes = ({
             hasdownVoted: userHasDownVoted,
             path,
           });
+        } else if (type === "answer") {
+          await upvoteAnswer({
+            answerId: JSON.parse(itemId),
+            userId: JSON.parse(userId),
+            hasupVoted: userHasUpVoted,
+            hasdownVoted: userHasDownVoted,
+            path,
+          });
         }
+
         break;
 
       case "downvote":
@@ -54,7 +68,16 @@ const Votes = ({
             hasdownVoted: userHasDownVoted,
             path,
           });
+        } else if (type === "answer") {
+          await downvoteAnswer({
+            answerId: JSON.parse(itemId),
+            userId: JSON.parse(userId),
+            hasupVoted: userHasUpVoted,
+            hasdownVoted: userHasDownVoted,
+            path,
+          });
         }
+
         break;
       default:
         break;
@@ -109,18 +132,20 @@ const Votes = ({
         </div>
       </div>
 
-      <Image
-        src={
-          userHasSaved
-            ? "/assets/icons/start-filled.svg"
-            : "/assets/icons/star-red.svg"
-        }
-        alt="starred"
-        height={18}
-        width={18}
-        className="cursor-pointer"
-        onClick={handleSave}
-      />
+      {type === "question" && (
+        <Image
+          src={
+            userHasSaved
+              ? "/assets/icons/start-filled.svg"
+              : "/assets/icons/star-red.svg"
+          }
+          alt="starred"
+          height={18}
+          width={18}
+          className="cursor-pointer"
+          onClick={handleSave}
+        />
+      )}
     </div>
   );
 };
