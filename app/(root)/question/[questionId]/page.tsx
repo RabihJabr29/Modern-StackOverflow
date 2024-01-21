@@ -23,13 +23,13 @@ const QuestionDetailsPage = async ({
   const question = await getQuestionById({ questionId });
   const { userId: clerkId } = auth();
 
-  let mongoUser;
+  let user;
 
   if (clerkId) {
-    mongoUser = await getUserById({ userId: clerkId });
+    user = await getUserById({ userId: clerkId });
   }
 
-  const mongoUserId = mongoUser ? mongoUser._Id : undefined;
+  const mongoUserId = user ? user._id : undefined;
 
   return (
     <>
@@ -59,9 +59,7 @@ const QuestionDetailsPage = async ({
               userHasUpVoted={question.upVotes.includes(mongoUserId)}
               downVotes={question.downVotes.length}
               userHasDownVoted={question.downVotes.includes(mongoUserId)}
-              userHasSaved={
-                mongoUser ? mongoUser.saved.includes(question._id) : false
-              }
+              userHasSaved={user ? user.saved.includes(question._id) : false}
             />
           </div>
         </div>
