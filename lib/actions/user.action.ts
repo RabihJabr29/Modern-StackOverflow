@@ -5,6 +5,7 @@ import {
   CreateUserParams,
   DeleteUserParams,
   GetAllUsersParams,
+  ToggleSaveQuestionParams,
   UpdateUserParams,
 } from "./shared.types";
 import { revalidatePath } from "next/cache";
@@ -91,6 +92,42 @@ export async function deleteUser(userData: DeleteUserParams) {
     const deletedUser = await User.findOneAndDelete(user._id);
 
     return deletedUser;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+// Save or UnSave questions
+
+export async function saveQuestion({
+  userId,
+  questionId,
+  path,
+}: ToggleSaveQuestionParams) {
+  try {
+    connectToDatabase();
+
+    await User.findByIdAndUpdate(userId, { $addToSet: { saved: questionId } });
+
+    revalidatePath(path);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function unSaveQuestion({
+  userId,
+  questionId,
+  path,
+}: ToggleSaveQuestionParams) {
+  try {
+    connectToDatabase();
+
+    await User.findByIdAndUpdate(userId, { $pull: { saved: questionId } });
+
+    revalidatePath(path);
   } catch (error) {
     console.log(error);
     throw error;

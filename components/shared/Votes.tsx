@@ -1,4 +1,5 @@
 "use client";
+import { saveQuestion, unSaveQuestion } from "@/lib/actions/user.action";
 import {
   downvoteAnswer,
   downvoteQuestion,
@@ -30,8 +31,28 @@ const Votes = ({
   userHasDownVoted,
   userHasSaved,
 }: VotesProps) => {
-  const handleSave = () => {};
   const path = usePathname();
+
+  const handleSave = async () => {
+    if (!userId) {
+      return;
+    }
+
+    if (userHasSaved) {
+      await unSaveQuestion({
+        questionId: JSON.parse(itemId),
+        userId: JSON.parse(userId),
+        path,
+      });
+    } else {
+      await saveQuestion({
+        questionId: JSON.parse(itemId),
+        userId: JSON.parse(userId),
+        path,
+      });
+    }
+  };
+
   const handleVote = async (voteType: string) => {
     if (!userId) {
       return;
@@ -136,7 +157,7 @@ const Votes = ({
         <Image
           src={
             userHasSaved
-              ? "/assets/icons/start-filled.svg"
+              ? "/assets/icons/star-filled.svg"
               : "/assets/icons/star-red.svg"
           }
           alt="starred"
