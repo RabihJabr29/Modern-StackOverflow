@@ -42,6 +42,11 @@ const Answer = ({ question, questionId, authorId }: AnswerProps) => {
   const handleCreateAnswer = async (values: z.infer<typeof AnswerSchema>) => {
     setIsSubmitting(true);
     try {
+      if (!authorId) {
+        alert("Sign in to write an answer.");
+        throw new Error("User not authenticated.");
+      }
+
       await createAnswer({
         content: values.answer,
         author: JSON.parse(authorId),

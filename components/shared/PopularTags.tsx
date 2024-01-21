@@ -1,15 +1,9 @@
 import React from "react";
 import RenderTag from "./RenderTag";
+import { getAllTags } from "@/lib/actions/tag.action";
 
-const PopularTags = () => {
-  const tags = [
-    { _id: "1", name: "Next.js", totalQuestions: 20 },
-    { _id: "2", name: "React.js", totalQuestions: 32 },
-    { _id: "3", name: "Java", totalQuestions: 11 },
-    { _id: "4", name: "Spring-boot", totalQuestions: 19 },
-    { _id: "5", name: "Rust", totalQuestions: 9 },
-    { _id: "6", name: "SQL", totalQuestions: 16 },
-  ];
+const PopularTags = async () => {
+  const { tags } = await getAllTags({});
 
   return (
     <>
@@ -22,7 +16,7 @@ const PopularTags = () => {
             key={tag._id}
             _id={tag._id}
             name={tag.name}
-            totalQuestions={tag.totalQuestions}
+            totalQuestions={tag.questions.length}
             showCount={true}
           />
         ))}

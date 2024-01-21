@@ -13,7 +13,7 @@ interface TagCardProps {
 const TagCard = ({ tag }: TagCardProps) => {
   return (
     <Link
-      href={`/tag/${tag._id}`}
+      href={`/tag/${JSON.stringify(tag._id)}`}
       className="shadow-light100_darknone w-full max-xs:min-w-full xs:w-[240px]"
     >
       <article className="background-light800_darkgradient light-border flex w-full flex-col justify-center rounded-2xl border p-8">

@@ -29,6 +29,8 @@ const QuestionDetailsPage = async ({
     mongoUser = await getUserById({ userId: clerkId });
   }
 
+  const mongoUserId = mongoUser ? mongoUser._Id : undefined;
+
   return (
     <>
       <div className="flex-start w-full flex-col">
@@ -52,12 +54,14 @@ const QuestionDetailsPage = async ({
             <Votes
               type="question"
               itemId={JSON.stringify(question._id)}
-              userId={JSON.stringify(mongoUser._id)}
+              userId={JSON.stringify(mongoUserId)}
               upVotes={question.upVotes.length}
-              userHasUpVoted={question.upVotes.includes(mongoUser._id)}
+              userHasUpVoted={question.upVotes.includes(mongoUserId)}
               downVotes={question.downVotes.length}
-              userHasDownVoted={question.downVotes.includes(mongoUser._id)}
-              userHasSaved={mongoUser.saved.includes(question._id)}
+              userHasDownVoted={question.downVotes.includes(mongoUserId)}
+              userHasSaved={
+                mongoUser ? mongoUser.saved.includes(question._id) : false
+              }
             />
           </div>
         </div>
@@ -106,14 +110,14 @@ const QuestionDetailsPage = async ({
 
       <AllAnswers
         questionId={question._id}
-        userId={mongoUser._id}
+        userId={mongoUserId}
         totalAnswers={question.answers.length}
       />
 
       <Answer
         question={question.content}
         questionId={JSON.stringify(question._id)}
-        authorId={JSON.stringify(mongoUser._id)}
+        authorId={JSON.stringify(mongoUserId)}
       />
     </>
   );
