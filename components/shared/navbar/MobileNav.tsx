@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import Link from "next/link";
-import { SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { sidebarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
@@ -19,7 +19,7 @@ const NavContent = () => {
   const pathName = usePathname();
 
   return (
-    <section className="flex h-full flex-col gap-6 pt-16 ">
+    <section className="flex h-fit flex-col gap-1 pt-16">
       {sidebarLinks.map((item) => {
         const isActive =
           (pathName.includes(item.route) && item.route.length > 1) ||
@@ -53,6 +53,12 @@ const NavContent = () => {
 };
 
 const MobileNav = () => {
+  const { signOut } = useAuth();
+
+  const handleSignOut = () => {
+    signOut();
+  };
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -76,7 +82,7 @@ const MobileNav = () => {
             Dev <span className="text-primary-500">flow</span>
           </p>
         </Link>
-        <div>
+        <div className="custom-scrollbar flex h-full flex-col justify-self-end">
           <SheetClose asChild>
             <NavContent />
           </SheetClose>
@@ -99,6 +105,25 @@ const MobileNav = () => {
               </SheetClose>
             </div>
           </SignedOut>
+
+          <SignedIn>
+            <div className="mt-10 flex flex-col gap-4 justify-self-end ">
+              <Link
+                href="/"
+                className=" flex items-center justify-start gap-4 rounded-lg bg-transparent p-4"
+                onClick={handleSignOut}
+              >
+                <Image
+                  src="/assets/icons/account.svg"
+                  alt="Log out"
+                  width={20}
+                  height={20}
+                  className="invert-colors"
+                />
+                <p className="base-medium text-dark300_light900">Log out</p>
+              </Link>
+            </div>
+          </SignedIn>
         </div>
       </SheetContent>
     </Sheet>
