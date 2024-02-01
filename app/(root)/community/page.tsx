@@ -8,6 +8,7 @@ import { getAllUsers } from "@/lib/actions/user.action";
 const CommunityPage = async () => {
   const results = await getAllUsers({});
   const { users } = results;
+
   return (
     <>
       <h1 className="h1-bold text-dark100_light900 max-sm:w-full">All Users</h1>
