@@ -4,7 +4,7 @@ Welcome to the StackOverflow Clone, a modern Q&A platform built using Next.js, R
 
 ## Features (Work in progress) :D
 
-### 1. Voting System
+### 1. Voting System (Done)
 
 Users can upvote and downvote questions and answers, allowing the community to highlight the most helpful and relevant content.
 
@@ -12,13 +12,18 @@ Users can upvote and downvote questions and answers, allowing the community to h
 
 Earn reputation points based on your contributions. The more valuable your questions and answers, the higher your reputation will be. Gain privileges as you climb the reputation ladder.
 
-### 3. Authentication with Clerk
+### 3. Authentication with Clerk (Done)
 
 Secure authentication is provided by Clerk, ensuring a seamless and safe user experience. Easily sign in, manage your profile, and participate in the community.
 
 ### 4. ChatGPT Auto-generated Answers
 
 Experience the power of ChatGPT, which provides auto-generated answers for new posts. This feature enhances user engagement and ensures that questions receive prompt responses.
+
+### 5. Viewing System
+
+Questions and Answers have a views counter to show their activity.
+
 
 ## Tech Stack
 
