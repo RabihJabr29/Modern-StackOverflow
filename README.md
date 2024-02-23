@@ -2,13 +2,13 @@
 
 Welcome to the StackOverflow Clone, a modern Q&A platform built using Next.js, React.js, MongoDB, and Clerk for authentication. This application is designed to replicate the functionality of StackOverflow while incorporating some unique features.
 
-## Features (Work in progress) :D
+## Features
 
 ### 1. Voting System (Done)
 
 Users can upvote and downvote questions and answers, allowing the community to highlight the most helpful and relevant content.
 
-### 2. Reputation System
+### 2. Reputation System (Work in progress)
 
 Earn reputation points based on your contributions. The more valuable your questions and answers, the higher your reputation will be. Gain privileges as you climb the reputation ladder.
 
@@ -16,13 +16,17 @@ Earn reputation points based on your contributions. The more valuable your quest
 
 Secure authentication is provided by Clerk, ensuring a seamless and safe user experience. Easily sign in, manage your profile, and participate in the community.
 
-### 4. ChatGPT Auto-generated Answers
+### 4. ChatGPT Auto-generated Answers (Work in progress)
 
 Experience the power of ChatGPT, which provides auto-generated answers for new posts. This feature enhances user engagement and ensures that questions receive prompt responses.
 
-### 5. Viewing System
+### 5. Viewing System (Done)
 
 Questions and Answers have a views counter to show their activity.
+
+### 6. Global Search, Local Page Search, Filters, Pagination (Work in progress)
+
+You can search the whole app databse, specific pages details and you can filter.
 
 
 ## Tech Stack
