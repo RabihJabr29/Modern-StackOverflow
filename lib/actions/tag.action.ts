@@ -67,7 +67,7 @@ export async function getQuestionsByTagId(params: GetQuestionsByTagIdParams) {
       },
       populate: [
         { path: "tags", model: Tag, select: "_id name" },
-        { path: "author", model: Tag, select: "_id clerkId name picture" },
+        { path: "author", model: User, select: "_id clerkId name picture" },
       ],
     });
 
@@ -76,7 +76,7 @@ export async function getQuestionsByTagId(params: GetQuestionsByTagIdParams) {
     }
 
     const questions = tag.questions;
-
+    console.log(questions);
     return { tagTitle: tag.name, questions };
   } catch (error) {
     console.log(error);
